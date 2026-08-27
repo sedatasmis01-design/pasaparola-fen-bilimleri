@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>6. Sınıf Fen Bilimleri - Pasaparola Yarışması (Akıllı Tahta Modu)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Konfeti Efekti Canvas -->
+    <canvas id="confettiCanvas"></canvas>
+
+    <!-- Üst Başlık ve Akıllı Tahta Navigasyon Çubuğu -->
+    <header class="navbar">
+        <div class="brand">
+            <div class="brand-icon">🔬</div>
+            <div>
+                <h1>FEN PASAPAROLA</h1>
+            </div>
+            <span class="badge">Akıllı Tahta Modu</span>
+        </div>
+
+        <div class="nav-actions">
+            <button id="btnPacksModal" class="btn-nav" title="Soru Paketi Değiştir">
+                📚 Ünite / Soru Seç
+            </button>
+            <button id="btnToggleTeamMode" class="btn-nav" title="Sınıfı İki Gruba Ayırarak Yarıştır">
+                👥 Takım Modu
+            </button>
+            <button id="btnToggleKeyboard" class="btn-nav active" title="Dokunmatik Sanal Klavyeyi Aç/Kapat">
+                ⌨️ Sanal Klavye
+            </button>
+            <button id="btnToggleFullscreen" class="btn-nav" title="Tam Ekran Moduna Geç">
+                ⛶ Tam Ekran
+            </button>
+            <button id="btnRestart" class="btn-nav" title="Oyunu Sıfırla ve Yeniden Başlat">
+                🔄 Yeniden Başlat
+            </button>
+        </div>
+    </header>
+
+    <!-- Ana Oyun Konteyneri -->
+    <main class="game-container">
+        
+        <!-- SOL PANEL: İnteraktif Alfabe Çarkı -->
+        <section class="wheel-section">
+            <canvas id="wheelCanvas"></canvas>
+            <p class="wheel-hint">💡 İpucu: Çarktaki herhangi bir harfe dokunarak sorusuna gidebilirsiniz.</p>
+        </section>
+
+        <!-- SAĞ PANEL: Skor, Soru Kartı ve Jokerler -->
+        <section class="play-section">
+            
+            <!-- Skor Paneli (Bireysel & Takım Modu) -->
+            <div class="scoreboard-card">
+                <!-- Bireysel Skor -->
+                <div id="singleScorecard" class="single-score">
+                    <div class="score-badge">
+                        <span class="lbl">Puan</span>
+                        <span id="valPoints" class="val pts">0</span>
+                    </div>
+                    <div class="score-badge">
+                        <span class="lbl">Doğru</span>
+                        <span id="valCorrect" class="val cor">0</span>
+                    </div>
+                    <div class="score-badge">
+                        <span class="lbl">Yanlış</span>
+                        <span id="valWrong" class="val wro">0</span>
+                    </div>
+                    <div class="score-badge">
+                        <span class="lbl">Pas</span>
+                        <span id="valPas" class="val pas">0</span>
+                    </div>
+                </div>
+
+                <!-- Takım Modu Skoru -->
+                <div id="teamScorecard" class="team-scoreboard">
+                    <div id="cardTeamA" class="team-card team-a active">
+                        <div class="team-name">🔵 Mavi Takım</div>
+                        <div id="teamAScore" class="team-pts">0 P</div>
+                    </div>
+                    <div id="cardTeamB" class="team-card team-b">
+                        <div class="team-name">🌸 Pembe Takım</div>
+                        <div id="teamBScore" class="team-pts">0 P</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Soru ve Cevap Alanı Kartı -->
+            <div class="question-card">
+                <div class="q-header">
+                    <div class="letter-badge-lg">
+                        <span>HARF:</span>
+                        <strong id="lblActiveLetter">A</strong>
+                    </div>
+                    <div id="lblTimer" class="timer-box">
+                        ⏱️ 30s
+                    </div>
+                </div>
+
+                <!-- Soru Metni -->
+                <div class="question-body">
+                    <div class="q-label">SORU / İPUCU</div>
+                    <div id="txtQuestion" class="q-text">
+                        Yükleniyor...
+                    </div>
+                </div>
+
+                <!-- Harf İpucu Açılma Alanı -->
+                <div id="hintDisplay" class="hint-display"></div>
+
+                <!-- Geri Bildirim Bannerı -->
+                <div id="feedbackBanner" class="feedback-banner"></div>
+
+                <!-- Cevap Giriş Alanı ve Butonlar -->
+                <div>
+                    <div class="input-group">
+                        <input 
+                            type="text" 
+                            id="ansInput" 
+                            class="ans-input" 
+                            placeholder="Cevabınızı buraya yazın..." 
+                            autocomplete="off"
+                            autocorrect="off"
+                            spellcheck="false"
+                        >
+                        <button id="btnSubmit" class="btn-action btn-submit" title="Cevabı Gönder">
+                            ✓ CEVAPLA
+                        </button>
+                        <button id="btnPas" class="btn-action btn-pas" title="Pas Geç">
+                            ⏳ PAS
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Yarışma Jokerleri Paneli -->
+            <div class="jokers-card">
+                <div class="jokers-title">
+                    <span>⚡ YARIŞMA JOKERLERİ</span>
+                </div>
+                <div class="joker-buttons">
+                    <button id="btnJokerHint" class="btn-joker" title="Kelimenin bir harfini açar">
+                        💡 Harf Al (<span id="badgeJokerHint" class="joker-count">3</span>)
+                    </button>
+                    <button id="btnJokerTime" class="btn-joker" title="Sayaca +15 saniye ekler">
+                        ⏳ +15 Sn (<span id="badgeJokerTime" class="joker-count">3</span>)
+                    </button>
+                    <button id="btnJokerPause" class="btn-joker" title="Sayacı durdurarak sınıfça tartışmanızı sağlar">
+                        👥 Sınıfı Dinle (<span id="badgeJokerPause" class="joker-count">2</span>)
+                    </button>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Alt Kısım: Dokunmatik Türkçe Sanal Klavye -->
+    <footer id="keyboardSection" class="keyboard-section">
+        <div class="kb-row">
+            <button class="kb-key" data-key="E">E</button>
+            <button class="kb-key" data-key="R">R</button>
+            <button class="kb-key" data-key="T">T</button>
+            <button class="kb-key" data-key="Y">Y</button>
+            <button class="kb-key" data-key="U">U</button>
+            <button class="kb-key" data-key="I">I</button>
+            <button class="kb-key" data-key="O">O</button>
+            <button class="kb-key" data-key="P">P</button>
+            <button class="kb-key" data-key="Ğ">Ğ</button>
+            <button class="kb-key" data-key="Ü">Ü</button>
+        </div>
+        <div class="kb-row">
+            <button class="kb-key" data-key="A">A</button>
+            <button class="kb-key" data-key="S">S</button>
+            <button class="kb-key" data-key="D">D</button>
+            <button class="kb-key" data-key="F">F</button>
+            <button class="kb-key" data-key="G">G</button>
+            <button class="kb-key" data-key="H">H</button>
+            <button class="kb-key" data-key="J">J</button>
+            <button class="kb-key" data-key="K">K</button>
+            <button class="kb-key" data-key="L">L</button>
+            <button class="kb-key" data-key="Ş">Ş</button>
+            <button class="kb-key" data-key="İ">İ</button>
+        </div>
+        <div class="kb-row">
+            <button class="kb-key" data-key="Z">Z</button>
+            <button class="kb-key" data-key="C">C</button>
+            <button class="kb-key" data-key="V">V</button>
+            <button class="kb-key" data-key="B">B</button>
+            <button class="kb-key" data-key="N">N</button>
+            <button class="kb-key" data-key="M">M</button>
+            <button class="kb-key" data-key="Ö">Ö</button>
+            <button class="kb-key" data-key="Ç">Ç</button>
+            <button class="kb-key wide" data-action="backspace">⌫ Sil</button>
+            <button class="kb-key wide action" data-action="enter">⏎ Gir</button>
+        </div>
+    </footer>
+
+    <!-- Soru Paketleri Seçim Modalı -->
+    <div id="modalPacks" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title">📚 Soru Paketi ve Ünite Seçin</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div id="packListContainer" class="pack-list">
+                <!-- Javascript ile dinamik doldurulur -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Oyun Sonu Kutlama Modalı -->
+    <div id="modalGameOver" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title">🎉 YARIŞMA TAMAMLANDI!</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div id="gameOverSummary">
+                <!-- Javascript ile doldurulur -->
+            </div>
+            <button id="btnPlayAgain" class="btn-primary">
+                🔄 Yeni Oyuna Başla
+            </button>
+        </div>
+    </div>
+
+    <!-- Scriptler -->
+    <script src="questions_bank.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
