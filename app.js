@@ -165,7 +165,7 @@ class PasaparolaApp {
         this.confetti = new ConfettiEngine(document.getElementById("confettiCanvas"));
 
         // Oyun Ayarları
-        this.currentPackKey = "6_genel";
+        this.currentPackKey = "paket_1";
         this.data = QUESTION_PACKS[this.currentPackKey].questions;
         this.totalQuestions = this.data.length;
 
@@ -691,10 +691,10 @@ class PasaparolaApp {
             this.jokers.pause--;
             this.updateJokerButtons();
             this.sound.playJoker();
-            this.showFeedback("⏸️ Zaman Duraklatıldı! Sınıfça tartışabilirsiniz.", "pas");
+            this.showFeedback("⏸️ Zaman Duraklatıldı! Dilediğinizce düşünebilirsiniz.", "pas");
             this.dom.btnJokerPause.innerHTML = `▶️ Devam Et (<span id="badgeJokerPause">${this.jokers.pause}</span>)`;
         } else {
-            this.dom.btnJokerPause.innerHTML = `👥 Sınıfı Dinle (<span id="badgeJokerPause">${this.jokers.pause}</span>)`;
+            this.dom.btnJokerPause.innerHTML = `👥 Süreyi Durdur (<span id="badgeJokerPause">${this.jokers.pause}</span>)`;
             this.hideFeedback();
         }
     }

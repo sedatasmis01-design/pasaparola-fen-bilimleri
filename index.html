@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>6. Sınıf Fen Bilimleri - Pasaparola Yarışması (Akıllı Tahta Modu)</title>
+    <title>Pasaparola - Genel Kültür Bilgi Yarışması</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,16 +14,16 @@
     <!-- Üst Başlık ve Akıllı Tahta Navigasyon Çubuğu -->
     <header class="navbar">
         <div class="brand">
-            <div class="brand-icon">🔬</div>
+            <div class="brand-icon">🏆</div>
             <div>
-                <h1>FEN PASAPAROLA</h1>
+                <h1>PASAPAROLA</h1>
             </div>
-            <span class="badge">Akıllı Tahta Modu</span>
+            <span class="badge">Genel Kültür Yarışması</span>
         </div>
 
         <div class="nav-actions">
             <button id="btnPacksModal" class="btn-nav" title="Soru Paketi Değiştir">
-                📚 Ünite / Soru Seç
+                🎯 Soru Paketi Seç (3 Paket)
             </button>
             <button id="btnToggleTeamMode" class="btn-nav" title="Sınıfı İki Gruba Ayırarak Yarıştır">
                 👥 Takım Modu
@@ -147,8 +147,8 @@
                     <button id="btnJokerTime" class="btn-joker" title="Sayaca +15 saniye ekler">
                         ⏳ +15 Sn (<span id="badgeJokerTime" class="joker-count">3</span>)
                     </button>
-                    <button id="btnJokerPause" class="btn-joker" title="Sayacı durdurarak sınıfça tartışmanızı sağlar">
-                        👥 Sınıfı Dinle (<span id="badgeJokerPause" class="joker-count">2</span>)
+                    <button id="btnJokerPause" class="btn-joker" title="Sayacı durdurarak serbestçe düşünmenizi sağlar">
+                        👥 Süreyi Durdur (<span id="badgeJokerPause" class="joker-count">2</span>)
                     </button>
                 </div>
             </div>
@@ -159,6 +159,8 @@
     <!-- Alt Kısım: Dokunmatik Türkçe Sanal Klavye -->
     <footer id="keyboardSection" class="keyboard-section">
         <div class="kb-row">
+            <button class="kb-key" data-key="Q">Q</button>
+            <button class="kb-key" data-key="W">W</button>
             <button class="kb-key" data-key="E">E</button>
             <button class="kb-key" data-key="R">R</button>
             <button class="kb-key" data-key="T">T</button>
@@ -185,6 +187,7 @@
         </div>
         <div class="kb-row">
             <button class="kb-key" data-key="Z">Z</button>
+            <button class="kb-key" data-key="X">X</button>
             <button class="kb-key" data-key="C">C</button>
             <button class="kb-key" data-key="V">V</button>
             <button class="kb-key" data-key="B">B</button>
@@ -192,6 +195,7 @@
             <button class="kb-key" data-key="M">M</button>
             <button class="kb-key" data-key="Ö">Ö</button>
             <button class="kb-key" data-key="Ç">Ç</button>
+            <button class="kb-key wide" data-action="space">␣ Boşluk</button>
             <button class="kb-key wide" data-action="backspace">⌫ Sil</button>
             <button class="kb-key wide action" data-action="enter">⏎ Gir</button>
         </div>
@@ -201,7 +205,7 @@
     <div id="modalPacks" class="modal-overlay">
         <div class="modal-box">
             <div class="modal-header">
-                <h3 class="modal-title">📚 Soru Paketi ve Ünite Seçin</h3>
+                <h3 class="modal-title">🎯 Soru Paketi Seçin</h3>
                 <button class="modal-close">&times;</button>
             </div>
             <div id="packListContainer" class="pack-list">
