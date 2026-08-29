@@ -1,6 +1,6 @@
-# 🏆 Pasaparola - Genel Kültür Bilgi Yarışması (Akıllı Tahta & Web Uyumlu)
+# 🔬 Fen Bilimleri Pasaparola Yarışması (Akıllı Tahta & Web Uyumlu)
 
-Genel Kültür kategorisinde, **Akıllı Tahta Uyumlu**, **3 Farklı Soru Paketli**, **Yarışma Jokerli**, **Takım Modlu** ve **Dokunmatik Sanal Klavyeli** modern Pasaparola yarışma platformu.
+Fen Bilimleri alanında, **Akıllı Tahta Uyumlu**, **3 Farklı Soru Paketli**, **Yarışma Jokerli**, **Takım Modlu** ve **Dokunmatik Sanal Klavyeli** modern Pasaparola yarışma platformu.
 
 ---
 
@@ -12,16 +12,16 @@ Herhangi bir kuruluma gerek yoktur! Akıllı tahtalarda, tabletlerde ve bilgisay
 * Veya `index.html` dosyasına çift tıklayarak çevrimdışı oynayabilirsiniz.
 
 ### 🌟 Öne Çıkan Özellikler:
-1. **🎯 3 Farklı Genel Kültür Soru Paketi:**
-   * **1. Soru Paketi:** Tarih, coğrafya, edebiyat ve genel kültür (27 Harf).
-   * **2. Soru Paketi:** Sanat, spor, tarih ve günlük yaşam (27 Harf).
-   * **3. Soru Paketi:** Doğa, mimarlık, icatlar ve popüler kültür (27 Harf).
+1. **🎯 3 Farklı Fen Bilimleri Soru Paketi:**
+   * **1. Soru Paketi (Fen Bilimleri - Set 1):** Gök cisimleri, madde, kuvvet, canlılar ve çevre (27 Harf).
+   * **2. Soru Paketi (Fen Bilimleri - Set 2):** Gezegenler, uzay, vücudumuzdaki sistemler ve organlar (27 Harf).
+   * **3. Soru Paketi (Fen Bilimleri - Set 3):** Canlı çeşitliliği, fotosentez, mikroskobik canlılar ve kuvvet-hareket (27 Harf).
 2. **⛶ Akıllı Tahta Tam Ekran Modu:** Tek tıkla tahtayı tam ekran kaplayan yüksek kaliteli arayüz.
 3. **⌨️ Dokunmatik Türkçe Q Sanal Klavye:** Ekrana tam oturan, boşluk ve silme tuşlu sanal klavye.
 4. **⚡ Yarışma Jokerleri:**
    * 💡 **Harf Al (İpucu):** Kelimenin harflerini tek tek açar (`D _ N A _ _ _ _ E T R E`).
    * ⏳ **+15 Sn:** Sayaca anında 15 saniye ekler.
-   * 👥 **Süreyi Durdur:** Süreyi duraklatarak dilediğinizce düşünme/tartışma imkanı tanır.
+   * 👥 **Süreyi Durdur:** Süreyi duraklatarak serbestçe düşünme/tartışma imkanı tanır.
 5. **👥 Takım Yarışması Modu:**
    * Sınıfı veya arkadaş grubunu **🔵 Mavi Takım** ve **🌸 Pembe Takım** olarak ikiye ayırır.
    * Sırayla soru sorar, takım puanlarını canlı tutar ve sonunda kazananı kutlar.

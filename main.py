@@ -13,7 +13,7 @@ from questions import DATA, turkish_upper
 class PasaparolaGame:
     def __init__(self, root):
         self.root = root
-        self.root.title("Pasaparola - Genel Kültür Bilgi Yarışması")
+        self.root.title("Fen Bilimleri - Pasaparola Yarışması")
         self.root.geometry("1000x720")
         self.root.minsize(920, 680)
         self.root.configure(bg="#0f172a")
@@ -65,7 +65,7 @@ class PasaparolaGame:
 
         title_lbl = tk.Label(
             header_frame,
-            text="🏆 PASAPAROLA - GENEL KÜLTÜR",
+            text="🔬 FEN BİLİMLERİ PASAPAROLA",
             font=("Segoe UI", 16, "bold"),
             bg="#1e293b",
             fg="#38bdf8"
